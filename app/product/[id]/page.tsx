@@ -1,6 +1,7 @@
 import { SingleProduct } from "@/app/products";
 import { Metadata } from 'next';
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 
 interface Props {
@@ -9,20 +10,36 @@ interface Props {
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
 
-  const {id, title} = await getProduct(params.id); //TODO: Make this request response available everywhere in the page
+  try {
+    const {id, title} = await getProduct(params.id); //TODO: Make this request response available everywhere in the page
+  
+    return {
+      title: `#${ id } - ${ title }`,
+      description: `Details of the product ${title}`,
+    }
+    
+  } catch (error) {
 
-  return {
-    title: `#${ id } - ${ title }`,
-    description: `Details of the product ${title}`,
+    return {
+      title: 'Product page',
+      description: 'Details of the product',
+    }
+    
   }
 }
 
 const getProduct = async (id: string): Promise<SingleProduct> => {
-  const product = await fetch(`https://fakestoreapi.com/products/${id}`)
-  .then((res) => res.json())
-  .then((json) => json);
 
-  return product;
+  try {
+    const product = await fetch(`https://fakestoreapi.com/products/${id}`)
+    .then((res) => res.json())
+    .then((json) => json);
+  
+    return product;
+    
+  } catch (error) {
+    notFound();
+  }
 }
 
 const ProductPage = async ({ params }: Props) => {
