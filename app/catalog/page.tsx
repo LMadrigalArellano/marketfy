@@ -1,5 +1,5 @@
-import { Metadata } from "next";
-import React from "react";
+import { Metadata } from 'next';
+import React from 'react';
 
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const CatalogPage = () => {
   return (
     <>
-      <h1 className="text-7xl">Catalog page</h1>
+      <h1 className='text-7xl'>Catalog page</h1>
     </>
   )
 }
