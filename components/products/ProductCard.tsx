@@ -8,7 +8,7 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
 
-  const { id, title, image, description, price, rating} = product;
+  const { id, title, image, price } = product;
 
   return (
       <div className="rounded-md fade-inm-10 w-80">
