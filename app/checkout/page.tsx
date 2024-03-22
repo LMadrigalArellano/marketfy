@@ -13,14 +13,14 @@ export const CartPage = async () => {
 
       <div className='flex flex-col w-[1000px]'>
 
-        <h1>Cart</h1>
+        <h1>Verify order</h1>
 
         <div className='grid grid-cols-2 sm:grid-cols-2 gap-10'>
 
           <div className='flex flex-col mt-5'>
-            <span className='text-xl'>Add more items</span>
-            <Link href='/catalog' className='underline mb-5'>
-              Continue shopping
+            <span className='text-xl'>Adjust items</span>
+            <Link href='/cart' className='underline mb-5'>
+              Edit cart
             </Link>
 
             {
@@ -40,11 +40,8 @@ export const CartPage = async () => {
 
                   <div>
                     <p>{product.title}</p>
-                    <p>${product.price}</p>
-                    <QuantitySelector quantity={3}/>
-                    <button className='underline mt-3'>
-                      Remove
-                    </button>
+                    <p>${product.price} x 3</p>
+                    <p className='font-bold'>Subtotal: ${product.price * 3}</p>
                   </div>
                 </div>
               ))
@@ -68,6 +65,11 @@ export const CartPage = async () => {
               </div>
 
               <div className='grid grid-cols-2'>
+                <span>Impuestos (15%)</span>
+                <span className='text-right'>$33</span>
+              </div>
+
+              <div className='grid grid-cols-2'>
                 <span className='text-2xl mt-5'>Total: </span>
                 <span className='text-2xl mt-5 text-right'>$333</span>
               </div>
@@ -75,8 +77,8 @@ export const CartPage = async () => {
               <div className='mt-5 mb-2 w-full'>
               <Link 
                 className='flex btn-primary justify-center'
-                href='/checkout'>
-                Chekout
+                href='/checkout/address'>
+                Pay
               </Link>
             </div>
           </div>
