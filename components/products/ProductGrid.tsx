@@ -1,4 +1,4 @@
-import { SingleProduct } from "../../app/products"
+import { SingleProduct } from "@/interfaces/products/single-product";
 import { ProductCard } from "./ProductCard";
 
 interface Props {

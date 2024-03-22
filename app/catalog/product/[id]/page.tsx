@@ -1,4 +1,4 @@
-import { SingleProduct } from "@/app/products";
+import { SingleProduct } from '@/interfaces/products/single-product';
 import { Metadata } from 'next';
 import Image from "next/image";
 import { notFound } from "next/navigation";

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { SingleProduct } from "../../app/products";
 import Image from "next/image";
+import { SingleProduct } from "@/interfaces/products/single-product";
 
 interface Props { 
   product: SingleProduct
@@ -23,7 +23,7 @@ export const ProductCard = ({ product }: Props) => {
         <div className="p-4 flex flex-col">
           <Link 
             className="hover:text-blue-600"
-            href={`/product/${ id }`}
+            href={`catalog/product/${ id }`}
           >
             {title}
           </Link>
