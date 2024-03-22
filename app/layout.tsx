@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Navbar, Sidebar } from "@/components";
 import { inter } from "@/config/fonts";
+import { Providers } from "./store/Providers";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        <Sidebar />
-        {children}
+        <Providers>
+          <Navbar />
+          <Sidebar />
+          {children}
+        </Providers>
       </body>
     </html>
   );

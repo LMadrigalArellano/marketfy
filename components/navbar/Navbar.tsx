@@ -1,7 +1,11 @@
+'use client'
+
 import Link from "next/link"
 import { ActiveLink } from "..";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "@/app/store/ui/sideMenuSlice";
 
 
 const navItems = [
@@ -11,6 +15,9 @@ const navItems = [
 ];
 
 export const Navbar = () => {
+
+	const dispatch = useDispatch();
+
 	return (
 		<nav className='flex px-5 justify-between items-center w-full'>
 			<Link href={'/'} className='flex items-center'>
@@ -40,7 +47,10 @@ export const Navbar = () => {
 					</div>
 				</Link>
 
-				<button className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
+				<button 
+					className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
+					onClick={() => dispatch( toggleMenu() )}
+				>
 					Menu
 				</button>
 			</div>
