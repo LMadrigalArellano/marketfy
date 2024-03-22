@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { Navbar, Sidebar } from "@/components";
 import { inter } from "@/config/fonts";
-import { Providers } from "./store/Providers";
+import { Providers } from "@/store/Providers";
 
 export const metadata: Metadata = {
   title: "Home",

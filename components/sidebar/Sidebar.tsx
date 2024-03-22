@@ -1,7 +1,7 @@
 'use client'
 
-import { useAppSelector } from "@/app/store"
-import { toggleMenu } from "@/app/store/ui/sideMenuSlice"
+import { useAppSelector } from "@/store"
+import { toggleMenu } from "@/store/ui/sideMenuSlice"
 import Link from "next/link"
 import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 import { useDispatch } from "react-redux"

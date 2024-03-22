@@ -1,10 +1,9 @@
-import { QuantitySelector } from '@/components';
 import { getProducts } from '@/utils/getProducts';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
-export const CartPage = async () => {
+export default async () => {
 
   const productsInCart = await getProducts(); //TODO: Manage with Redux
   
@@ -87,5 +86,3 @@ export const CartPage = async () => {
     </div>
   )
 }
-
-export default CartPage;

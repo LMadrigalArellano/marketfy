@@ -5,7 +5,7 @@ import { ActiveLink } from "..";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "@/app/store/ui/sideMenuSlice";
+import { toggleMenu } from "@/store/ui/sideMenuSlice";
 
 
 const navItems = [
