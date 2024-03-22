@@ -1,7 +1,5 @@
 
-
 export * from './navbar/Navbar';
-
-//Client Components
+export * from './sidebar/Sidebar';
 
 export { ActiveLink } from './active-link/ActiveLink';

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Navbar } from "@/components";
+import { Navbar, Sidebar } from "@/components";
 import { inter } from "@/config/fonts";
 
 export const metadata: Metadata = {
@@ -17,7 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar/>
+        <Navbar />
+        <Sidebar />
         {children}
       </body>
     </html>
