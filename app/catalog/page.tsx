@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { SingleProduct } from '../products';
-import { ProductGrid } from '../products/components/ProductGrid';
+import { ProductGrid } from '../../components/products/ProductGrid';
 
 //API being used:
 //https://github.com/keikaavousi/fake-store-api

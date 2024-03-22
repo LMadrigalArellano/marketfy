@@ -20,6 +20,7 @@ export const Sidebar = () => {
               className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30"
             />
             <div
+              onClick={ () => dispatch( toggleMenu() )}
               className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm"
             />
 

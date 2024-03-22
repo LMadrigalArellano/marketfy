@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { SingleProduct } from "..";
+import { SingleProduct } from "../../app/products";
 import Image from "next/image";
-import { GoHeart } from "react-icons/go";
 
 interface Props { 
   product: SingleProduct

@@ -1,5 +1,7 @@
 
-export * from './navbar/Navbar';
-export * from './sidebar/Sidebar';
 
+export { Navbar } from './navbar/Navbar';
+export { Sidebar } from './sidebar/Sidebar';
 export { ActiveLink } from './active-link/ActiveLink';
+export { ProductCard } from './products/ProductCard';
+export { ProductGrid } from './products/ProductGrid';
