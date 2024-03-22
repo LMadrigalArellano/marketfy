@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 
-import style from './ActiveLink.module.css';
 import { usePathname } from "next/navigation";
 
 interface Props {
@@ -16,7 +15,11 @@ export const ActiveLink = ({ path, text }: Props) => {
 
 	return (
 		<Link 
-			className={ `${style.link} ${path === pathName ? style['active-link'] : ''} `}
+			className={ 
+				`${path === pathName ? 'text-blue-500' : ''} 
+				m-2 p-2 rounded-md transition-all hover:bg-gray-100 hover:text-blue-400
+				`
+			}
 			href={path}>
 				{text}
 		</Link>

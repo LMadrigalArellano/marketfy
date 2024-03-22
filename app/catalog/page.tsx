@@ -25,7 +25,7 @@ const CatalogPage = async () => {
 
   return (
     <>
-      <h1 className='text-7xl'>Catalog page</h1>
+      <h1 className='text-5xl'>Catalog page</h1>
       <ProductGrid products={ products }/>
     </>
   )

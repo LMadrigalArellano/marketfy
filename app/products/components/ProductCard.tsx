@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SingleProduct } from "..";
 import Image from "next/image";
-import { HeartIcon } from "@primer/octicons-react";
+import { GoHeart } from "react-icons/go";
 
 interface Props { 
   product: SingleProduct
@@ -49,7 +49,7 @@ export const ProductCard = ({ product }: Props) => {
         <div className="border-b">
           <Link href="/account/campaigns" className="px-4 py-2 hover:bg-gray-100 flex">
             <div className="text-red-600">
-            <HeartIcon/>
+            <GoHeart/>
             </div>
             <div className="pl-3">
               <p className="text-sm font-medium text-gray-800 leading-none">
