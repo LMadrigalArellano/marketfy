@@ -2,7 +2,7 @@
 
 import { QuantitySelector } from "@/components";
 import { CartProduct, SingleProduct } from "@/interfaces";
-import { addProductToCart } from "@/store/cart/cart-store";
+import { addProductToCart, calculateTotalItems } from "@/store/cart/cart-store";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -11,6 +11,11 @@ interface Props {
 }
 
 export default ({ product }: Props) => {
+
+  const handleAddToCart = () => {
+    dispatch( addProductToCart(cartProduct) );
+    dispatch( calculateTotalItems() );
+  }
 
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -30,7 +35,7 @@ export default ({ product }: Props) => {
 
     <button 
       className='btn-primary my-5'
-      onClick={() => dispatch( (addProductToCart(cartProduct)) )}
+      onClick={handleAddToCart}
     >
       Add to cart
     </button>

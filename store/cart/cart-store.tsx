@@ -3,10 +3,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface CartState {
   cart: CartProduct[];
+  totalItems: number;
 }
 
 const initialState: CartState = {
   cart: [],
+  totalItems: 0,
 }
 
 const cartSlice = createSlice({
@@ -14,12 +16,19 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
 
+    calculateTotalItems(state){
+      state.totalItems = state.cart.reduce((total, item) => total += item.quantity, 0 );
+    },
+
     addProductToCart(state, action: PayloadAction<CartProduct>){
-
       const newProduct = action.payload;
+      const indexOfProductInCart = state.cart.map(x => x.id).indexOf(newProduct.id);
 
+      if( indexOfProductInCart !== -1){
+        state.cart[indexOfProductInCart].quantity += newProduct.quantity;
+        return;
+      }
       state.cart.push(newProduct);
-
     },
 
     updateProductQuantity(state, quantity) {
@@ -31,6 +40,6 @@ const cartSlice = createSlice({
   }
 });
 
-export const { addProductToCart, updateProductQuantity} = cartSlice.actions
+export const { addProductToCart, updateProductQuantity, calculateTotalItems} = cartSlice.actions
 
 export default cartSlice.reducer

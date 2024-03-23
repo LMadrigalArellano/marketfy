@@ -6,6 +6,7 @@ import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "@/store/ui/sideMenuSlice";
+import { useAppSelector } from "@/store";
 
 
 const navItems = [
@@ -17,6 +18,7 @@ const navItems = [
 export const Navbar = () => {
 
 	const dispatch = useDispatch();
+	const cartItemCount:number = useAppSelector(state => state.cart.totalItems);
 
 	return (
 		<nav className='flex px-5 justify-between items-center w-full'>
@@ -41,7 +43,7 @@ export const Navbar = () => {
 				<Link href='/cart' className="mx-2 hover:bg-gray-100">
 					<div className="relative ">
 						<span className="absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white ">
-							3
+							{cartItemCount}
 						</span>
 							<IoCartOutline className="w-5 h-5"/>
 					</div>

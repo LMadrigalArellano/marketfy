@@ -1,15 +1,14 @@
 'use client'
 
-import { useAppSelector } from "@/store"
+import { useAppDispatch, useAppSelector } from "@/store"
 import { toggleMenu } from "@/store/ui/sideMenuSlice"
 import Link from "next/link"
 import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
-import { useDispatch } from "react-redux"
 
 export const Sidebar = () => {
 
   const isMenuOpen = useAppSelector(state => state.sideMenu.isOpen);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <div>
