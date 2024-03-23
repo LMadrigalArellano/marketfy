@@ -1,9 +1,5 @@
-import { SingleProduct } from '@/interfaces/products/single-product';
+import { ProductsState, SingleProduct } from '@/interfaces';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
-interface ProductsState {
-  products: SingleProduct[];
-}
 
 const initialState: ProductsState = {
   products: [
@@ -51,6 +47,10 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
 
+    setInitialProducts(state, action: PayloadAction<ProductsState>){
+      state = action.payload;
+    },
+
     addProduct(state, action: PayloadAction<SingleProduct>){
 
       const newProduct = action.payload;
@@ -65,6 +65,6 @@ const productsSlice = createSlice({
   }
 });
 
-export const { addProduct } = productsSlice.actions;
+export const { setInitialProducts, addProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;

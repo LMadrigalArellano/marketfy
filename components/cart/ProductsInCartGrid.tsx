@@ -2,19 +2,12 @@
 
 import { CartProduct } from "@/interfaces";
 import ProductInCart from "./ProductInCart"
-import { useAppDispatch, useAppSelector } from "@/store";
-import { calculateTotalItems } from "@/store/cart/cart-store";
-import { useEffect } from "react";
+import { useAppSelector } from "@/store";
 
 const ProductsInCartGrid = () => {
 
-  const dispatch = useAppDispatch();
   const productsInCart: CartProduct[] = useAppSelector(state => state.cart.cart);
   
-  useEffect(() => {
-    dispatch(calculateTotalItems());
-  }, [productsInCart])
-
   return (
     <div>
       {

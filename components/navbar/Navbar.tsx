@@ -4,10 +4,8 @@ import Link from "next/link"
 import { ActiveLink } from "..";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
 import { toggleMenu } from "@/store/ui/sideMenuSlice";
 import { useAppSelector } from "@/store";
-
 
 const navItems = [
 	{ path: '/catalog', text: 'Catalog' },
@@ -17,8 +15,11 @@ const navItems = [
 
 export const Navbar = () => {
 
-	const dispatch = useDispatch();
 	const cartItemCount:number = useAppSelector(state => state.cart.totalItems);
+	
+	function dispatch(arg0: { payload: undefined; type: "isSideMenuOpen/toggleMenu"; }): void {
+		throw new Error("Function not implemented.");
+	}
 
 	return (
 		<nav className='flex px-5 justify-between items-center w-full'>

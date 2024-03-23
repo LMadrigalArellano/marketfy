@@ -4,21 +4,14 @@ import sideMenuReducer from './ui/sideMenuSlice';
 import productsReducer from './products/products-store';
 import cartReducer from './cart/cart-store';
 
-
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { saveState, loadState } from '@/utils/localStorage';
-
-const persistedState = loadState();
+import { saveState } from '@/utils/localStorage';
 
 export const store = configureStore({
   reducer: {
     sideMenu: sideMenuReducer,
     products: productsReducer,
     cart: cartReducer
-  },
-  preloadedState: {
-    products: persistedState.products,
-    cart: persistedState.cart,
   },
 });
 
