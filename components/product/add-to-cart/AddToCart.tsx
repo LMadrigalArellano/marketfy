@@ -12,11 +12,6 @@ interface Props {
 
 export default ({ product }: Props) => {
 
-  const handleAddToCart = () => {
-    dispatch( addProductToCart(cartProduct) );
-    dispatch( calculateTotalItems() );
-  }
-
   const [quantity, setQuantity] = useState<number>(1);
 
   const cartProduct: CartProduct = {
@@ -29,18 +24,21 @@ export default ({ product }: Props) => {
 
   const dispatch = useDispatch();
 
+  const handleAddToCart = () => {
+    dispatch( addProductToCart(cartProduct) );
+    dispatch( calculateTotalItems() );
+  }
+
   return (
     <>
-    <QuantitySelector quantity={cartProduct.quantity} onQuantityChanged={setQuantity}/>
+      <QuantitySelector quantity={cartProduct.quantity} onQuantityChanged={setQuantity}/>
 
-    <button 
-      className='btn-primary my-5'
-      onClick={handleAddToCart}
-    >
-      Add to cart
-    </button>
+      <button 
+        className='btn-primary my-5'
+        onClick={handleAddToCart}
+      >
+        Add to cart
+      </button>
     </>
-
-    
   )
 }

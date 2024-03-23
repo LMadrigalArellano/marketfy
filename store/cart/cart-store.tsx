@@ -31,15 +31,17 @@ const cartSlice = createSlice({
       state.cart.push(newProduct);
     },
 
-    updateProductQuantity(state, quantity) {
-      console.log(quantity);
-      state.cart.map((cartItem) => console.log(cartItem));
-    }
+    // updateProductQuantity(state, quantity) {
+    //   console.log(quantity);
+    //   state.cart.map((cartItem) => console.log(cartItem));
+    // },
 
-  //   removeProduct(state,),
+    removeProduct(state, action: PayloadAction<CartProduct>) {
+      state.cart = state.cart.filter((product) => product.id !== action.payload.id );
+    }
   }
 });
 
-export const { addProductToCart, updateProductQuantity, calculateTotalItems} = cartSlice.actions
+export const { addProductToCart, removeProduct, calculateTotalItems} = cartSlice.actions
 
 export default cartSlice.reducer

@@ -3,12 +3,20 @@
 import Image from "next/image";
 
 import { CartProduct } from "@/interfaces"
+import { useDispatch } from "react-redux";
+import { calculateTotalItems, removeProduct } from "@/store/cart/cart-store";
 
 interface Props {
   product: CartProduct,
 }
 
 export default ({ product }: Props) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveProduct = () => {
+    dispatch( removeProduct(product) );
+    dispatch( calculateTotalItems() );
+  }
   return (
     <div key={product.id} className='flex mb-5'>
     <Image
@@ -27,7 +35,7 @@ export default ({ product }: Props) => {
       <p>{product.title}</p>
       <p>${product.price}</p>
       <p>{product.quantity} item(s) selected</p>
-      <button className='underline mt-3'>
+      <button className='underline mt-3' onClick={handleRemoveProduct}>
         Remove
       </button>
     </div>
