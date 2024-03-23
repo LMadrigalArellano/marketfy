@@ -1,11 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import sideMenuReducer from './ui/sideMenuSlice';
+import productsReducer from './products/products-store';
+import cartReducer from './cart/cart-store';
+
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 export const store = configureStore({
   reducer: {
-    sideMenu: sideMenuReducer
+    sideMenu: sideMenuReducer,
+    products: productsReducer,
+    cart: cartReducer
   },
 })
 

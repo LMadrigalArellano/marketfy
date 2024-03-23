@@ -4,7 +4,7 @@ interface MenuState {
   isOpen: boolean;
 }
 
-const initialState = {
+const initialState: MenuState = {
   isOpen: false
 }
 

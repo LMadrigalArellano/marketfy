@@ -1,5 +1,4 @@
-import { QuantitySelector } from '@/components';
-import { titleFont } from '@/config/fonts';
+import AddToCart from '@/components/product/add-to-cart/AddToCart';
 import { getSingleProduct } from '@/utils/getSingleProduct';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -31,15 +30,15 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 
 const ProductPage = async ({ params }: Props) => {
 
-  const {id, title, price, description, image } = await getSingleProduct(params.id); //TODO: Make this request response available everywhere in the page
+  const product = await getSingleProduct(params.id); //TODO: Make this request response available everywhere in the page
 
   
   return (
     <div className='mt-5 mb-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3'>
       <div className='col-span-1 lg:col-span-2'>
         <Image 
-        src={image}
-        alt={title}
+        src={product.image}
+        alt={product.title}
         sizes='100vw'
         width={0}
         height={0}
@@ -49,26 +48,23 @@ const ProductPage = async ({ params }: Props) => {
       </div>
       <div className='col-span-1 lg:col-span-2 px-5'>
         <h1 className={` antialiased font-bold text-xl `}>
-          { title }
+          { product.title }
         </h1>
         <p className='text-lg mb-5'>
-          ${ price }
+          ${ product.price }
         </p>
 
         <h3 className='font-bold text-sm'>
           Quantity
         </h3>
-        <QuantitySelector quantity={ 1 }/>
 
-        <button className='btn-primary my-5'>
-          Add to cart
-        </button>
+        <AddToCart product={ product }/>
 
         <h3 className='font-bold text-sm'>
           Description
         </h3>
           <p className='font-light'>
-            { description }
+            { product.description }
           </p>
       </div>
 
