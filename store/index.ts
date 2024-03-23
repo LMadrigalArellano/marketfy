@@ -6,6 +6,9 @@ import cartReducer from './cart/cart-store';
 
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { saveState, loadState } from '@/utils/localStorage';
+
+const persistedState = loadState();
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +16,18 @@ export const store = configureStore({
     products: productsReducer,
     cart: cartReducer
   },
-})
+  preloadedState: {
+    products: persistedState.products,
+    cart: persistedState.cart,
+  },
+});
+
+store.subscribe(() => {
+  saveState({
+    products: store.getState().products,
+    cart: store.getState().cart
+  });
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>
