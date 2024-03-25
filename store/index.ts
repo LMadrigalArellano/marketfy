@@ -4,6 +4,7 @@ import sideMenuReducer from './ui/sideMenuSlice';
 import productsReducer from './products/products-store';
 import cartReducer from './cart/cart-store';
 import ordersReducer from './orders/orders.store';
+import usersReducer from './users/users-store';
 
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { saveState } from '@/utils/localStorage';
@@ -14,6 +15,7 @@ export const store = configureStore({
     products: productsReducer,
     cart: cartReducer,
     orders: ordersReducer,
+    users: usersReducer,
   },
 });
 
@@ -22,6 +24,7 @@ store.subscribe(() => {
     products: store.getState().products,
     cart: store.getState().cart,
     orders: store.getState().orders,
+    users: store.getState().users,
   });
 });
 
