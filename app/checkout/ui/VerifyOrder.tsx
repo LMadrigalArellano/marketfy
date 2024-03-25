@@ -37,7 +37,6 @@ const VerifyOrder = () => {
     dispatch( clearCart() );
     dispatch( calculateTotalItems() );
 
-
   }
 
   return (

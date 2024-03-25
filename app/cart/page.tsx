@@ -2,15 +2,18 @@ import ProductsInCartGrid from '@/components/cart/ProductsInCartGrid';
 import Link from 'next/link';
 import React from 'react'
 import { OrderSummary } from './ui/OrderSummary';
+import { Title } from '@/components';
 
 const CartPage = () => {  
 
   return (
+    <>
+    <Title text={'Cart Page'}/>
+
     <div className='flex justify-center items-center mb-72 px-10 sm:px0'>
 
       <div className='flex flex-col w-[1000px]'>
 
-        <h1>Cart</h1>
 
         <div className='grid grid-cols-2 sm:grid-cols-2 gap-10'>
 
@@ -26,6 +29,7 @@ const CartPage = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import React from 'react';
 import { ProductGrid } from '../../components/products/ProductGrid';
+import { Title } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Catalog',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 const CatalogPage = async () => {
   return (
     <>
-      <h1 className='text-5xl'>Catalog page</h1>
+      <Title text={'Product Catalog'}/>
       <ProductGrid />
     </>
   )
