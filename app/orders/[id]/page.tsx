@@ -1,7 +1,5 @@
-import { getProducts } from '@/utils/getProducts';
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react'
+import OrderData from './ui/OrderData';
 
 interface Props {
   params: {
@@ -15,10 +13,14 @@ export default async ({ params }: Props) => {
   return (
     <div className='flex justify-center items-center mb-72 px-10 sm:px0'>
 
-      <div className='flex flex-col w-[1000px]'>
+    <div className='flex flex-col w-[1000px]'>
 
-        <h1>Order with id</h1>        
+      <div className='grid grid-cols-2 sm:grid-cols-2 gap-10'>
+
+        <OrderData id={id}/>
+
       </div>
     </div>
+  </div>
   )
 }
