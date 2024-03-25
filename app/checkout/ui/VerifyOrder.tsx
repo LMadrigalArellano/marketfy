@@ -2,6 +2,7 @@
 
 import { CartProduct, CartSummary, SingleOrder } from "@/interfaces";
 import { useAppDispatch, useAppSelector } from "@/store";
+import { clearCart, calculateTotalItems } from "@/store/cart/cart-store";
 import { addNewOrder } from "@/store/orders/orders.store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,6 +34,9 @@ const VerifyOrder = () => {
       }
     }
     dispatch(addNewOrder(newOrder));
+    dispatch( clearCart() );
+    dispatch( calculateTotalItems() );
+
 
   }
 
