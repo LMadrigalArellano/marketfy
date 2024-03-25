@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 
-
 export const metadata: Metadata = {
-  title: 'Catalog',
-  description: 'Catalog Page',
-  keywords: ['Catalog page', 'Browse products', 'catalog']
+  title: 'WishList',
+  description: 'WishList Page',
+  keywords: ['WishList page', 'WishList products', 'WishList']
 };
 
-
-export default function CatalogLayout({
+export default function WishlistLayout({
   children
 }: {
   children: React.ReactNode;

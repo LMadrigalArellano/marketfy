@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 const navItems = [
 	{ path: '/catalog', text: 'Catalog' },
 	{ path: '/orders', text: 'Orders' },
-	{ path: '/favorites', text: 'Favorites' },
+	{ path: '/wishlist', text: 'Wishlist' },
 ];
 
 export const Navbar = () => {
