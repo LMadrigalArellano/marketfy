@@ -1,4 +1,4 @@
-import AddToCart from '@/components/product/add-to-cart/AddToCart';
+import AddToCart from '@/components/product/add-to-cart/AddToCartWithQuantity';
 import { getSingleProduct } from '@/utils/getSingleProduct';
 import { Metadata } from 'next';
 import Image from 'next/image';

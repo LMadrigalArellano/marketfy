@@ -1,6 +1,6 @@
 'use client'
 
-import { QuantitySelector } from "@/components";
+import { AddToCartButton, QuantitySelector } from "@/components";
 import { CartProduct, SingleProduct } from "@/interfaces";
 import { useAppDispatch } from "@/store";
 import { addProductToCart, calculateTotalItems, setSummaryInformation } from "@/store/cart/cart-store";
@@ -22,24 +22,11 @@ export default ({ product }: Props) => {
     image: product.image
   }
 
-  const dispatch = useAppDispatch();
-
-  const handleAddToCart = () => {
-    dispatch( addProductToCart(cartProduct) );
-    dispatch( calculateTotalItems() );
-    dispatch( setSummaryInformation() );
-  }
-
   return (
     <>
       <QuantitySelector quantity={cartProduct.quantity} onQuantityChanged={setQuantity}/>
 
-      <button 
-        className='btn-primary my-5'
-        onClick={handleAddToCart}
-      >
-        Add to cart
-      </button>
+      <AddToCartButton product={cartProduct}/>
     </>
   )
 }

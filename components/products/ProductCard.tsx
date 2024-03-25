@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SingleProduct } from "@/interfaces/products/single-product";
-import { ToggleFromWishListButton } from "..";
+import { AddToCartButton, ToggleFromWishListButton } from "..";
+import { usePathname } from 'next/navigation';
 
 interface Props { 
   product: SingleProduct
@@ -9,6 +10,7 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
 
+  const pathName = usePathname();
   const { id, title, image, price } = product;
 
   return (
@@ -35,6 +37,11 @@ export const ProductCard = ({ product }: Props) => {
             {title}
           </Link>
           <span className="font-bold">${price}</span>
+          {
+            pathName === '/wishlist'
+            &&
+            <AddToCartButton product={{...product, quantity: 1}}/>
+          }
         </div>
       </div>    
   )
