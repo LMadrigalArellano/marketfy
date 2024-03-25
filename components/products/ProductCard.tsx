@@ -1,8 +1,13 @@
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
 import { SingleProduct } from "@/interfaces/products/single-product";
 import { AddToCartButton, ToggleFromWishListButton } from "..";
 import { usePathname } from 'next/navigation';
+import { ProductModal } from "./ProductModal";
+import { useState } from "react";
+import { IoClose } from "react-icons/io5";
 
 interface Props { 
   product: SingleProduct
@@ -10,10 +15,13 @@ interface Props {
 
 export const ProductCard = ({ product }: Props) => {
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const pathName = usePathname();
   const { id, title, image, price } = product;
 
   return (
+    <>
       <div className="rounded-md fade-inm-10 w-80">
         <div className="relative">
           <Image 
@@ -23,6 +31,7 @@ export const ProductCard = ({ product }: Props) => {
             width={300}
             height={300}
             priority={false}
+            onClick={() => setIsModalOpen(true)}
           />
           <div className="absolute bottom-0 right-0 p-1">
           <ToggleFromWishListButton product={product}/>
@@ -44,5 +53,25 @@ export const ProductCard = ({ product }: Props) => {
           }
         </div>
       </div>    
+
+      {
+      isModalOpen 
+      && 
+      (
+        <>
+          <div 
+            className="fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30"
+          />
+          <div
+            onClick={ () => setIsModalOpen( false )}
+            className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm"
+          />
+          <ProductModal product={product} closeModal={() => setIsModalOpen(false)} />
+        </>
+      )
+      
+      
+      }
+    </>
   )
 }
