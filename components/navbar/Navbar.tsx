@@ -5,21 +5,19 @@ import { ActiveLink } from "..";
 import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { toggleMenu } from "@/store/ui/sideMenuSlice";
-import { useAppSelector } from "@/store";
+import { useAppDispatch, useAppSelector } from "@/store";
 
 const navItems = [
 	{ path: '/catalog', text: 'Catalog' },
-	{ path: '/a', text: 'Dynamic 1' },
-	{ path: '/b', text: 'Dynamic 2' },
+	{ path: '/orders', text: 'Orders' },
+	{ path: '/favorites', text: 'Favorites' },
 ];
 
 export const Navbar = () => {
 
+	const dispatch = useAppDispatch();
+
 	const cartItemCount:number = useAppSelector(state => state.cart.totalItems);
-	
-	function dispatch(arg0: { payload: undefined; type: "isSideMenuOpen/toggleMenu"; }): void {
-		throw new Error("Function not implemented.");
-	}
 
 	return (
 		<nav className='flex px-5 justify-between items-center w-full'>

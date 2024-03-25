@@ -1,10 +1,11 @@
 'use client';
 
-import { CartState, ProductsState } from "@/interfaces";
+import { CartState, OrdersState, ProductsState } from "@/interfaces";
 
 interface parsedValues {
-  products: ProductsState
-  cart: CartState
+  products: ProductsState,
+  cart: CartState,
+  orders: OrdersState,
 }
 
 const defaultValue: parsedValues = {
@@ -13,8 +14,17 @@ const defaultValue: parsedValues = {
   },
   cart: {
     cart: [],
-    totalItems: 0
-  }
+    totalItems: 0,
+    summaryInformation: {
+      productsAmount: 0,
+      subTotal: 0,
+      taxes: 0,
+      total: 0,
+    }
+  },
+  orders: {
+    orders:[]
+  },
 }
 
 export const loadState = ():parsedValues => {

@@ -45,13 +45,19 @@ const cartSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
+
+    setInitialOrders(state, action: PayloadAction<OrdersState>){
+      state = action.payload;
+    },
+
     addNewOrder(state, action: PayloadAction<SingleOrder>){
       state.orders.push(action.payload);
     },
   }
 });
 
-export const { 
+export const {
+  setInitialOrders, 
   addNewOrder,
 } = cartSlice.actions
 
