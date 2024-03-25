@@ -5,7 +5,7 @@ const initialState: OrdersState = {
   orders: [
   {
     id: '123',
-    date: new Date(),
+    date: "Sun Mar 24 2024 23:23:53 GMT-0600 (Central Standard Time)",
     orderSummary: {
       cart: [
         {
@@ -46,13 +46,7 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addNewOrder(state, action: PayloadAction<SingleOrder>){
-      const newOrder = action.payload;
-      const indexOfOrderInList = state.orders.map(x => x.id).indexOf(action.payload.id);
-
-      if( indexOfOrderInList !== -1){
-        return;
-      }
-      state.orders.push(newOrder);
+      state.orders.push(action.payload);
     },
   }
 });

@@ -33,9 +33,6 @@ const OrderData = ({ id }: Props) => {
   return (
     <>
       <div className='flex flex-col mt-5'>
-      <h2 className='text-2xl mb-2'>
-        Order: "{id}"
-      </h2>
         {
           cart.map( product => (
             <div key={product.id} className='flex mb-5'>
@@ -69,7 +66,7 @@ const OrderData = ({ id }: Props) => {
 
         <div className='grid grid-cols-2'>
           <span>Date: </span>
-          <span className='text-right'>{ currentOrder.date.toLocaleString("en-US") }</span>
+          <span className='text-right'>{ (new Date(currentOrder.date)).toLocaleString("en-US") }</span>
         </div>
 
         <div className='grid grid-cols-2'>

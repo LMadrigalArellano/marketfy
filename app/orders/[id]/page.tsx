@@ -14,6 +14,9 @@ export default async ({ params }: Props) => {
     <div className='flex justify-center items-center mb-72 px-10 sm:px0'>
 
     <div className='flex flex-col w-[1000px]'>
+    <h2 className='text-2xl mb-5'>
+        Order: "{id}"
+      </h2>
 
       <div className='grid grid-cols-2 sm:grid-cols-2 gap-10'>
 
