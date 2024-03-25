@@ -13,7 +13,8 @@ const initialState: ProductsState = {
       "rating": {
           "rate": 3.9,
           "count": 120
-      }
+      },
+      "inWishList": true,
     },
     {
       "id": 2,
@@ -25,7 +26,8 @@ const initialState: ProductsState = {
       "rating": {
           "rate": 4.1,
           "count": 259
-      }
+      },
+      "inWishList": false,
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@ const initialState: ProductsState = {
       "rating": {
           "rate": 4.7,
           "count": 500
-      }
+      },
+      "inWishList": false,
     },
   ]
 }
@@ -48,7 +51,7 @@ const productsSlice = createSlice({
   reducers: {
 
     setInitialProducts(state, action: PayloadAction<ProductsState>){
-      state = action.payload;
+      state.products = action.payload.products;
     },
 
     addProduct(state, action: PayloadAction<SingleProduct>){
@@ -60,11 +63,20 @@ const productsSlice = createSlice({
 
       state.products.push(newProduct);
 
+    },
+
+    toggleFromWishList(state, action: PayloadAction<SingleProduct>){
+
+      const product = action.payload;
+      const productIndex = state.products.map(x => x.id).indexOf(product.id);
+
+      state.products[productIndex].inWishList = !state.products[productIndex].inWishList;
+      
     }
 
   }
 });
 
-export const { setInitialProducts, addProduct } = productsSlice.actions;
+export const { setInitialProducts, addProduct, toggleFromWishList } = productsSlice.actions;
 
 export default productsSlice.reducer;

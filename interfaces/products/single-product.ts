@@ -6,6 +6,7 @@ export interface SingleProduct {
 	category:    string;
 	image:       string;
 	rating:      Rating;
+	inWishList:  boolean;
 }
 
 export interface Rating {

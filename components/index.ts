@@ -7,3 +7,4 @@ export { QuantitySelector } from './product/quantity-selector/QuantitySelector';
 export { Title } from './title/Title';
 export { Catalog } from './Catalog/Catalog';
 export { WishList } from './WishList/WishList';
+export { ToggleFromWishListButton } from './product/toggle-from-wishlist-button/ToggleFromWishListButton';
