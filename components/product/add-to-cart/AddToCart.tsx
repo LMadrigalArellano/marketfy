@@ -2,9 +2,9 @@
 
 import { QuantitySelector } from "@/components";
 import { CartProduct, SingleProduct } from "@/interfaces";
-import { addProductToCart, calculateTotalItems } from "@/store/cart/cart-store";
+import { useAppDispatch } from "@/store";
+import { addProductToCart, calculateTotalItems, setSummaryInformation } from "@/store/cart/cart-store";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 interface Props {
   product: SingleProduct,
@@ -22,11 +22,12 @@ export default ({ product }: Props) => {
     image: product.image
   }
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleAddToCart = () => {
     dispatch( addProductToCart(cartProduct) );
     dispatch( calculateTotalItems() );
+    dispatch( setSummaryInformation() );
   }
 
   return (

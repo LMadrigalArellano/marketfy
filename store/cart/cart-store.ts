@@ -4,6 +4,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 const initialState: CartState = {
   cart: [],
   totalItems: 0,
+  summaryInformation: {
+    productsAmount: 0,
+    subTotal: 0,
+    taxes: 0,
+    total: 0,
+  }
 }
 
 const cartSlice = createSlice({
@@ -17,6 +23,24 @@ const cartSlice = createSlice({
 
     calculateTotalItems(state){
       state.totalItems = state.cart.reduce((total, item) => total += item.quantity, 0 );
+    },
+
+    setSummaryInformation: (state) => {
+
+      const subTotal = state.cart.reduce(
+        (subTotal, product) => (product.quantity * product.price) + subTotal,
+        0
+      );
+
+      const taxes = subTotal * 0.16;
+      const total = subTotal + taxes;
+      
+      state.summaryInformation = {
+        productsAmount: state.totalItems,
+        subTotal,
+        taxes,
+        total,
+      }
     },
 
     addProductToCart(state, action: PayloadAction<CartProduct>){
@@ -41,6 +65,12 @@ const cartSlice = createSlice({
   }
 });
 
-export const { setInitialProductsInCart, addProductToCart, removeProduct, calculateTotalItems} = cartSlice.actions
+export const { 
+  setInitialProductsInCart, 
+  addProductToCart, 
+  removeProduct, 
+  calculateTotalItems,
+  setSummaryInformation
+} = cartSlice.actions
 
 export default cartSlice.reducer

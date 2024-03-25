@@ -47,7 +47,7 @@ export default async () => {
             }
           </div>
 
-            <div className='bg-white rounded-xl shadow-xl p-7'>
+            <div className='bg-white rounded-xl shadow-xl p-7 h-[290px]'>
 
               <h2 className='text-2xl mb-2'>
                 Order summary
@@ -64,7 +64,7 @@ export default async () => {
               </div>
 
               <div className='grid grid-cols-2'>
-                <span>Impuestos (15%)</span>
+                <span>Taxes (16%)</span>
                 <span className='text-right'>$33</span>
               </div>
 

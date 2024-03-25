@@ -1,9 +1,6 @@
 'use client'
 
-import { updateProductQuantity } from "@/store/cart/cart-store";
-import { useState } from "react";
 import { IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
 
 interface Props {
   quantity: number;
@@ -12,14 +9,10 @@ interface Props {
 
 export const QuantitySelector = ({ quantity, onQuantityChanged }: Props) => {
 
-  const dispatch = useDispatch();
-
   const handleQuantityChange = ( value:number ) => {
     if( quantity + value < 1 ) return;
 
     onQuantityChanged( quantity + value );
-
-    // dispatch(updateProductQuantity(product, count));
   }
 
   return (

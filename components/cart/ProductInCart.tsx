@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { CartProduct } from "@/interfaces"
 import { useDispatch } from "react-redux";
-import { calculateTotalItems, removeProduct } from "@/store/cart/cart-store";
+import { calculateTotalItems, removeProduct, setSummaryInformation } from "@/store/cart/cart-store";
 
 interface Props {
   product: CartProduct,
@@ -16,6 +16,7 @@ export default ({ product }: Props) => {
   const handleRemoveProduct = () => {
     dispatch( removeProduct(product) );
     dispatch( calculateTotalItems() );
+    dispatch( setSummaryInformation() );
   }
   return (
     <div key={product.id} className='flex mb-5'>
@@ -34,7 +35,10 @@ export default ({ product }: Props) => {
     <div>
       <p>{product.title}</p>
       <p>${product.price}</p>
-      <p>{product.quantity} item(s) selected</p>
+      <p>
+        {product.quantity} item{product.quantity > 1 && 's'}
+      </p>
+      <p className="font-bold">Subtotal: ${ (product.quantity * product.price).toFixed(2) }</p>
       <button className='underline mt-3' onClick={handleRemoveProduct}>
         Remove
       </button>
