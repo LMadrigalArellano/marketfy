@@ -43,10 +43,12 @@ export const Navbar = () => {
 				</Link>
 				<Link href='/cart' className="mx-2 hover:bg-gray-100">
 					<div className="relative ">
-						<span className="absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white ">
-							{cartItemCount}
-						</span>
-							<IoCartOutline className="w-5 h-5"/>
+						{cartItemCount > 0 && (
+							<span className="absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white ">
+								{ cartItemCount }
+							</span>
+						)}
+						<IoCartOutline className="w-5 h-5"/>
 					</div>
 				</Link>
 

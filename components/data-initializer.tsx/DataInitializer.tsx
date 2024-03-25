@@ -16,4 +16,8 @@ export const DataInitializer = () => {
 		dispatch(setInitialProducts(persistedState.products));
     dispatch( calculateTotalItems() );
   }, []);
+
+	return (
+		<></>
+	);
 }
