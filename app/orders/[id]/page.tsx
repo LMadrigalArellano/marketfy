@@ -7,14 +7,15 @@ interface Props {
   }
 }
 
-export default async ({ params }: Props) => {
+const OrdersPage = ({ params }: Props) => {
 
   const { id } = params;
+
   return (
     <div className='flex justify-center items-center mb-72 px-10 sm:px0'>
 
     <div className='flex flex-col w-[1000px]'>
-    <h2 className='text-2xl mb-5'>
+      <h2 className='text-2xl mb-5'>
         Order: "{id}"
       </h2>
 
@@ -27,3 +28,5 @@ export default async ({ params }: Props) => {
   </div>
   )
 }
+
+export default OrdersPage;

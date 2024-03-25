@@ -2,7 +2,6 @@
 
 import { SingleOrder } from "@/interfaces";
 import { useAppSelector } from "@/store";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from 'next/image';
@@ -19,16 +18,17 @@ const OrderData = ({ id }: Props) => {
   const currentOrder: (SingleOrder | undefined) = 
     useAppSelector(state => state.orders.orders).find((order) => order.id === id);
 
-  if(!currentOrder) return notFound();
-
   useEffect(() => {
     setLoaded(true);
   },[]);
 
   if(!loaded) return <p>Loading...</p>
 
+  if(!currentOrder) return notFound();
+
   const { cart, summaryInformation } = currentOrder.orderSummary;
   const { subTotal, taxes, total, productsAmount } = summaryInformation;
+
 
   return (
     <>
