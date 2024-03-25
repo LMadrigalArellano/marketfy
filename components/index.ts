@@ -1,3 +1,4 @@
+import { PrimaryButton } from './primary-button/PrimaryButton';
 export { Navbar } from './navbar/Navbar';
 export { Sidebar } from './sidebar/Sidebar';
 export { ActiveLink } from './active-link/ActiveLink';
@@ -10,3 +11,4 @@ export { WishList } from './WishList/WishList';
 export { ToggleFromWishListButton } from './product/toggle-from-wishlist-button/ToggleFromWishListButton';
 export { AddToCartButton } from './product/add-to-cart/AddToCartButton';
 export { SearchBar } from './searchbar/SearchBar';
+export { PrimaryButton } from './primary-button/PrimaryButton';

@@ -5,17 +5,12 @@ const initialState: UsersState = {
   users: [
     {
       id: '333',
-      userName: 'LMadrigalArellano',
       firstName: 'Leonardo',
       lastName: 'Madrigal',
       bio: 'Software Developer',
       email: 'LMadrigalArellano@Deloitte.com',
       password: '123',
-      areasOfInterest: [
-        'sport',
-        'software',
-        'technology',
-      ],
+      areasOfInterest: 'sport,software,technology',
       role: 'admin',
     }
   ]

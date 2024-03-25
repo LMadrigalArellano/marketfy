@@ -1,15 +1,14 @@
-
+import { RegisterForm } from './ui/RegisterForm';
 import { Title } from '@/components';
-import { LoginForm } from './ui/LoginForm';
 
-export default function LoginPage() {
+export default function NewAccountPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Title text='Login'/>
+      <Title text='Create a new account'/>
 
       <div className="flex w-full px-10 justify-center mt-10">
         <div className="flex justify-center w-[450px]">
-          <LoginForm />
+          <RegisterForm />
         </div>
       </div>
       

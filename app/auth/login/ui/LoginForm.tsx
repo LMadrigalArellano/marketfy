@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useAppSelector } from '@/store';
 import { User } from '@/interfaces';
 import { LoginButton } from './LoginButton';
+import { PrimaryButton } from '@/components';
 
 export const LoginForm = () => {
   const [loaded, setLoaded] = useState(false);
@@ -38,7 +39,7 @@ export const LoginForm = () => {
   if(!loaded) return <p>Loading...</p>
 
   return (
-    <form className="flex flex-col">
+    <form className="flex flex-col w-[420px]">
       <label htmlFor="email">Email</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
@@ -63,7 +64,7 @@ export const LoginForm = () => {
       >
       </div>
 
-      <LoginButton action={() => validateLogin(inputLogin)}/>
+      <PrimaryButton action={() => validateLogin(inputLogin)} text='Login'/>
 
       <div className="flex items-center my-5">
         <div className="flex-1 border-t border-gray-500"></div>
