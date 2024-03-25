@@ -2,10 +2,10 @@
 
 import { CartSummary } from "@/interfaces";
 import { useAppSelector } from "@/store";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export const OrderSummary = () => {
+const VerifyOrder = () => {
 
   const [loaded, setLoaded] = useState(false);
   const { productsAmount, subTotal, taxes, total }: CartSummary = useAppSelector(state => state.cart.summaryInformation);
@@ -20,7 +20,7 @@ export const OrderSummary = () => {
     <div className='bg-white rounded-xl shadow-xl p-7 h-[290px]'>
 
       <h2 className='text-2xl mb-2'>
-        Order summary
+        Verify order
       </h2>
 
       <div className='grid grid-cols-2'>
@@ -43,12 +43,15 @@ export const OrderSummary = () => {
         <span className='text-2xl mt-5 text-right'>${total.toFixed(2)}</span>
       </div>
       <div className='mt-5 mb-2 w-full'>
-        <Link 
-          className='flex btn-primary justify-center'
-          href='/checkout'>
-          Checkout
-        </Link>
-      </div>
+      <Link 
+        className='flex btn-primary justify-center'
+        href='/checkout/address'>
+        Place order
+      </Link>
     </div>
+  </div>
   )
 }
+
+
+export default VerifyOrder;

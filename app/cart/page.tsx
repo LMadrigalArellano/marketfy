@@ -22,13 +22,7 @@ const CartPage = () => {
 
             <ProductsInCartGrid />
           </div>
-
-            <div className='bg-white rounded-xl shadow-xl p-7 h-[290px]'>
-              <h2 className='text-2xl mb-2'>
-                Order summary
-              </h2>
-              <OrderSummary/>
-          </div>
+          <OrderSummary/>
         </div>
       </div>
     </div>

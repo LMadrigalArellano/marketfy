@@ -18,6 +18,7 @@ export default ({ product }: Props) => {
     dispatch( calculateTotalItems() );
     dispatch( setSummaryInformation() );
   }
+  
   return (
     <div key={product.id} className='flex mb-5'>
     <Image
