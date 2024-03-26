@@ -1,4 +1,4 @@
-import { CartProduct, CartState, User, UsersState } from '@/interfaces';
+import { User, UsersState } from '@/interfaces';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: UsersState = {
@@ -10,7 +10,7 @@ const initialState: UsersState = {
       bio: 'Software Developer',
       email: 'leo@leo.com',
       password: '123',
-      areasOfInterest: 'sport,software,technology',
+      areasOfInterest: 'sport,software,animal',
       role: 'admin',
     }
   ],

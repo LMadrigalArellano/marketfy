@@ -47,7 +47,6 @@ export const UserProfile = () => {
     if(isEditing){
 
       if(updatedUser.email.length < 5){
-        console.log(updatedUser.email);
         return alert('EMAIL ISSUE! Please add at least 5 characters');
       }
       if(updatedUser.password.length < 3){
@@ -192,7 +191,13 @@ export const UserProfile = () => {
                   </span>
                 </div>
                 :
-                <span className='p-2 border rounded-md bg-gray-200 min-h-10'>{retrievedUser.areasOfInterest.split(',').join('')}</span>
+                <span className='p-2 border rounded-md bg-gray-200 min-h-10'>
+                  {
+                    retrievedUser.areasOfInterest.split(',').length > 1
+                    ? retrievedUser.areasOfInterest.split(',').filter(x=> x !=='No interests').join(', ')
+                    : 'No interests'
+                  }
+                </span>
               }
             </div>
 

@@ -1,16 +1,22 @@
 'use client'
 
-import { useAppDispatch, useAppSelector } from "@/store"
-import { toggleMenu } from "@/store/ui/sideMenuSlice"
-import { logout } from "@/store/users/users-store"
-import Link from "next/link"
-import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPersonOutline, IoTicketOutline } from "react-icons/io5"
+import { useAppDispatch, useAppSelector } from "@/store";
+import { toggleMenu } from "@/store/ui/sideMenuSlice";
+import { logout } from "@/store/users/users-store";
+import Link from "next/link";
+import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPersonOutline, IoTicketOutline } from "react-icons/io5";
 
 export const Sidebar = () => {
 
   const isMenuOpen = useAppSelector(state => state.sideMenu.isOpen);
   const loggedUser = useAppSelector(state => state.users.loggedUser);
   const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch( toggleMenu() );  
+    dispatch( logout() );
+    window.location.replace('/');
+  }
 
   return (
     <div>
@@ -65,7 +71,7 @@ export const Sidebar = () => {
 
                   <Link
                     href="/"
-                    onClick={() => {dispatch( toggleMenu() ); dispatch( logout() ); }}
+                    onClick={handleLogout}
                     className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
                   >
                   <IoLogOutOutline size={30} />

@@ -11,11 +11,9 @@ const handleInputChange = (propertyName: string, propertyValue: string, object: 
       areasOfInterestArray.push(propertyValue);
     } else{
       areasOfInterestArray.splice(indexOfValue, 1);
+      console.log(areasOfInterestArray);
     }
-    propertyValue = areasOfInterestArray.join();
-
-    console.log(areasOfInterestArray);
-  }
+    propertyValue = areasOfInterestArray.length === 0 ? 'No interests' : areasOfInterestArray.join();  }
 
   setObject({
     ...object,
