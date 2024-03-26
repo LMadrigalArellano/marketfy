@@ -1,16 +1,28 @@
 'use client';
 
-import { Title } from '@/components';
 import { User } from '@/interfaces';
-import { useAppSelector } from '@/store';
-import Link from 'next/link';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setLoggedUser, updateUser } from '@/store/users/users-store';
+import { handleInputChange } from '@/utils/handleInputChange';
 import { notFound } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export const UserProfile = () => {
+  const dispatch = useAppDispatch();
   const [loaded, setLoaded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const users: User[] = useAppSelector(state => state.users.users);
   const retrievedUser = useAppSelector(state => state.users.loggedUser);
+  const [updatedUser, setUpdatedUser] = useState<User>({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    areasOfInterest: '',
+    bio: '',
+    role: '',
+    id: ''
+  });
 
   useEffect(() => {
     setLoaded(true);
@@ -19,6 +31,39 @@ export const UserProfile = () => {
   if(!loaded) return <p>Loading...</p>;
   
   if(!retrievedUser) return notFound();
+
+  const handleFormValueChange = (propertyName: string, propertyValue: string) => {
+    handleInputChange(propertyName, propertyValue, updatedUser, setUpdatedUser);
+  }
+
+  const handleButtonClick = () => {  
+    
+    let key: keyof typeof retrievedUser;
+    for(key in updatedUser){   
+      if(updatedUser[key] === ''){        
+        updatedUser[key] = retrievedUser[key];
+      }
+    }
+    if(isEditing){
+
+      if(updatedUser.email.length < 5){
+        console.log(updatedUser.email);
+        return alert('EMAIL ISSUE! Please add at least 5 characters');
+      }
+      if(updatedUser.password.length < 3){
+        return alert('PASSWORD ISSUE! Please add at least 3 characters');
+      }
+      if(updatedUser.firstName.length < 3){
+        return alert('FIRST NAME ISSUE! Please add at least 3 characters');
+      }
+      if(updatedUser.lastName.length < 3){
+        return alert('LAST NAME ISSUE! Please add at least 3 characters');
+      }
+      dispatch(updateUser(updatedUser));
+      dispatch(setLoggedUser(updatedUser));
+    }
+    setIsEditing(!isEditing);
+  }
 
   return (
     <>
@@ -41,9 +86,11 @@ export const UserProfile = () => {
                 isEditing
                 ? 
                 <input 
-                  type="text" 
+                name="first-name"
+                type="text" 
                   className="p-2 border rounded-md bg-white"
                   defaultValue={retrievedUser.firstName}
+                  onChange={(event) => handleFormValueChange('firstName', event.target.value)}
                 />
                 :
                 <span className='p-2 border rounded-md bg-gray-200'>{retrievedUser.firstName}</span>
@@ -57,9 +104,11 @@ export const UserProfile = () => {
                 isEditing
                 ? 
                 <input 
+                  name="last-name"
                   type="text" 
                   className="p-2 border rounded-md bg-white"
                   defaultValue={retrievedUser.lastName}
+                  onChange={(event) => handleFormValueChange('lastName', event.target.value)}
                 />
                 :
                 <span className='p-2 border rounded-md bg-gray-200'>{retrievedUser.lastName}</span>
@@ -72,9 +121,11 @@ export const UserProfile = () => {
                 isEditing
                 ? 
                 <input 
+                  name="email"
                   type="email" 
                   className="p-2 border rounded-md bg-white"
                   defaultValue={retrievedUser.email}
+                  onChange={(event) => handleFormValueChange('email', event.target.value)}
                 />
                 :
                 <span className='p-2 border rounded-md bg-gray-200'>{retrievedUser.email}</span>
@@ -87,12 +138,19 @@ export const UserProfile = () => {
                 isEditing
                 ? 
                 <input 
+                  name="password"
                   type="password" 
                   className="p-2 border rounded-md bg-white"
                   defaultValue={retrievedUser.password}
+                  onChange={(event) => handleFormValueChange('password', event.target.value)}
+
                 />
                 :
-                <span className='p-2 border rounded-md bg-gray-200'>***</span>
+                <span className='p-2 border rounded-md bg-gray-200'>
+                  {
+                    "*".repeat(retrievedUser.password.length)
+                  }
+                </span>
               }
             </div>
 
@@ -108,6 +166,8 @@ export const UserProfile = () => {
                       type="checkbox"
                       name="software"
                       value='software'
+                      defaultChecked={retrievedUser.areasOfInterest.includes('software')}
+                      onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
                     />
                   </span>
                   <span className='mr-4'>
@@ -116,6 +176,8 @@ export const UserProfile = () => {
                       type="checkbox"
                       name="animal"
                       value='animal'
+                      defaultChecked={retrievedUser.areasOfInterest.includes('animal')}
+                      onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
                     />
                   </span>
                   <span className='mr-4'>
@@ -124,11 +186,13 @@ export const UserProfile = () => {
                       type="checkbox"
                       name="sport"
                       value='sport'
+                      defaultChecked={retrievedUser.areasOfInterest.includes('sport')}
+                      onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
                     />
                   </span>
                 </div>
                 :
-                <span className='p-2 border rounded-md bg-gray-200 min-h-10'>{retrievedUser.areasOfInterest.split(',')}</span>
+                <span className='p-2 border rounded-md bg-gray-200 min-h-10'>{retrievedUser.areasOfInterest.split(',').join('')}</span>
               }
             </div>
 
@@ -137,10 +201,12 @@ export const UserProfile = () => {
               {
                 isEditing
                 ? 
-                <input 
+                <input
+                  name="bio"
                   type="text" 
                   className="p-2 border rounded-md bg-white"
                   defaultValue={retrievedUser.bio}
+                  onChange={(event) => handleFormValueChange('bio', event.target.value)}
                 />
                 :
                 <span className='p-2 border rounded-md bg-gray-200 min-h-10'>{retrievedUser.bio}</span>
@@ -150,7 +216,7 @@ export const UserProfile = () => {
 
             <div className="flex flex-col mb-2 items-end">
               <button 
-                onClick={() => setIsEditing(!isEditing)}
+                onClick={handleButtonClick}
                 className="btn-primary flex w-full sm:w-1/2 justify-center ">
                 {isEditing ? 'Save' : 'Edit'}
               </button>
@@ -159,6 +225,5 @@ export const UserProfile = () => {
         </div>
       </div>
     </>
-    
   )
 }

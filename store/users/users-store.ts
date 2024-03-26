@@ -38,8 +38,8 @@ const usersSlice = createSlice({
     updateUser(state, action: PayloadAction<User>) {
       const updatedUser = action.payload;
       const indexOfUser = state.users.map(x => x.id).indexOf(updatedUser.id);
-
-      if( indexOfUser !== -1){
+      
+      if( indexOfUser === -1){
         return;
       }
       

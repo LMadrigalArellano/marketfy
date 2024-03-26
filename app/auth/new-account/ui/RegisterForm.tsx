@@ -7,6 +7,7 @@ import { User } from '@/interfaces';
 import { PrimaryButton } from '@/components';
 import { v4 as uuidv4 } from 'uuid';
 import { addNewUser, setLoggedUser } from '@/store/users/users-store';
+import { handleInputChange } from '@/utils/handleInputChange';
 
 export const RegisterForm = () => {
 
@@ -25,6 +26,10 @@ export const RegisterForm = () => {
   });
 
   const users: User[] = useAppSelector(state => state.users.users);
+
+  const handleFormValueChange = (propertyName: string, propertyValue: string) => {
+    handleInputChange(propertyName, propertyValue, inputLogin, setInputLogin);
+  }
 
   const handleSubmitForm = () => {    
 
@@ -51,27 +56,6 @@ export const RegisterForm = () => {
 
   }
 
-  const handleInputChange = (propertyName: string, propertyValue: string) => {
-
-    if(propertyName === 'areasOfInterest'){
-      const areasOfInterestArray = inputLogin.areasOfInterest.split(',');
-      const indexOfValue = areasOfInterestArray.indexOf(propertyValue);
-
-      if( indexOfValue === -1){
-        areasOfInterestArray.push(propertyValue);
-      } else{
-        areasOfInterestArray[indexOfValue] = '';
-      }
-      propertyValue = areasOfInterestArray.join();
-
-    }
-
-    setInputLogin({
-      ...inputLogin,
-      [propertyName]: propertyValue
-    });
-  }
-
   useEffect(() => {
     setLoaded(true);
   },[]);
@@ -87,7 +71,7 @@ export const RegisterForm = () => {
         type="email"
         name="email"
         required={true}
-        onChange={(event) => handleInputChange('email', event.target.value)}
+        onChange={(event) => handleFormValueChange('email', event.target.value)}
       />
 
       <label htmlFor="email">Password</label>
@@ -96,7 +80,7 @@ export const RegisterForm = () => {
         type="password"
         name="password"
         required={true}
-        onChange={(event) => handleInputChange('password', event.target.value)}
+        onChange={(event) => handleFormValueChange('password', event.target.value)}
       />
 
       <label htmlFor="first-name">First Name</label>
@@ -105,7 +89,7 @@ export const RegisterForm = () => {
         type="text"
         name="first-name"
         required={true}
-        onChange={(event) => handleInputChange('firstName', event.target.value)}
+        onChange={(event) => handleFormValueChange('firstName', event.target.value)}
       />
 
       <label htmlFor="last-name">Last Name</label>
@@ -114,7 +98,7 @@ export const RegisterForm = () => {
         type="text"
         name="last-name"
         required={true}
-        onChange={(event) => handleInputChange('lastName', event.target.value)}
+        onChange={(event) => handleFormValueChange('lastName', event.target.value)}
       />
     
       <label htmlFor="bio">Bio</label>
@@ -122,7 +106,7 @@ export const RegisterForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="text"
         name="bio"
-        onChange={(event) => handleInputChange('bio', event.target.value)}
+        onChange={(event) => handleFormValueChange('bio', event.target.value)}
       />
 
       <label>Areas of interest</label>
@@ -134,7 +118,7 @@ export const RegisterForm = () => {
             type="checkbox"
             name="software"
             value='software'
-            onChange={(event) => handleInputChange('areasOfInterest', event.target.value)}
+            onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
           />
         </span>
         <span className='mr-4'>
@@ -143,7 +127,7 @@ export const RegisterForm = () => {
             type="checkbox"
             name="animal"
             value='animal'
-            onChange={(event) => handleInputChange('areasOfInterest', event.target.value)}
+            onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
           />
         </span>
         <span className='mr-4'>
@@ -152,7 +136,7 @@ export const RegisterForm = () => {
             type="checkbox"
             name="sport"
             value='sport'
-            onChange={(event) => handleInputChange('areasOfInterest', event.target.value)}
+            onChange={(event) => handleFormValueChange('areasOfInterest', event.target.value)}
           />
         </span>
       </div>
