@@ -1,10 +1,17 @@
-import { titleFont } from "@/config/fonts";
 
 export default function Home() {
   
   return (
-    <main className="flex flex-col items-center p-24">
-      <h1 className={`${titleFont.className} text-5xl font-bold`}>Home Page</h1>
-    </main>
+    <>
+      <main className="flex p-5">
+        <h1 className="text-5xl font-bold">Home Page</h1>
+      </main>
+      <p className="flex p-5">
+        Marketfy is a simulated e-commerce platform that allows users to browse products, add them to a shopping cart, manage a wishlist, and simulate the checkout process. The platform ensures persistence of shopping cart data across browser refreshes, the application also contains a section to view the history of orders.
+      </p>
+      <p className="flex p-5">
+        You must be logged in to enjoy the full experience
+      </p>
+    </>
   );
 }
