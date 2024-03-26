@@ -28,7 +28,6 @@ export const LoginForm = () => {
   }
 
   const handleInputChange = (propertyName: string, propertyValue: string) => {
-    console.log(propertyName, propertyValue);
     setInputLogin({
       ...inputLogin,
       [propertyName]: propertyValue
@@ -45,14 +44,16 @@ export const LoginForm = () => {
     <form className="flex flex-col w-[420px]">
       <label htmlFor="email">Email</label>
       <input
+        id="email"
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="email"
         name="email"
         onChange={(event) => handleInputChange('email', event.target.value)}
       />
 
-      <label htmlFor="email">Password</label>
+      <label htmlFor="password">Password</label>
       <input
+        id="password"
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="password"
         name="password"

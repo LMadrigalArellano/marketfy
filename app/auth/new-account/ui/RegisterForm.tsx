@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { User } from '@/interfaces';
 import { PrimaryButton } from '@/components';
 import { v4 as uuidv4 } from 'uuid';
-import { addNewUser } from '@/store/users/users-store';
+import { addNewUser, setLoggedUser } from '@/store/users/users-store';
 
 export const RegisterForm = () => {
 
@@ -29,11 +29,25 @@ export const RegisterForm = () => {
   const handleSubmitForm = () => {    
 
     if(users.find(x => x.email === inputLogin.email)){
-      alert('Email already registered');
+      alert('EMAIL ISSUE!: Already registered');
       return;
+    }
+    if(inputLogin.email.length < 5){
+      return alert('EMAIL ISSUE! Please add at least 5 characters');
+    }
+    if(inputLogin.password.length < 3){
+      return alert('PASSWORD ISSUE! Please add at least 3 characters');
+    }
+    if(inputLogin.firstName.length < 3){
+      return alert('FIRST NAME ISSUE! Please add at least 3 characters');
+    }
+    if(inputLogin.lastName.length < 3){
+      return alert('LAST NAME ISSUE! Please add at least 3 characters');
     }
 
     dispatch(addNewUser(inputLogin));
+    dispatch(setLoggedUser(inputLogin));
+    window.location.replace('/');
 
   }
 
@@ -67,11 +81,12 @@ export const RegisterForm = () => {
   return (
     <form className="flex flex-col w-[420px]">
 
-      <label htmlFor="email">Email</label>
+      <label onSubmit={handleSubmitForm} htmlFor="email">Email</label>
       <input
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="email"
         name="email"
+        required={true}
         onChange={(event) => handleInputChange('email', event.target.value)}
       />
 
@@ -80,6 +95,7 @@ export const RegisterForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="password"
         name="password"
+        required={true}
         onChange={(event) => handleInputChange('password', event.target.value)}
       />
 
@@ -88,6 +104,7 @@ export const RegisterForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="text"
         name="first-name"
+        required={true}
         onChange={(event) => handleInputChange('firstName', event.target.value)}
       />
 
@@ -96,6 +113,7 @@ export const RegisterForm = () => {
         className="px-5 py-2 border bg-gray-200 rounded mb-5"
         type="text"
         name="last-name"
+        required={true}
         onChange={(event) => handleInputChange('lastName', event.target.value)}
       />
     
@@ -138,7 +156,6 @@ export const RegisterForm = () => {
           />
         </span>
       </div>
-      
 
       <div
         className="flex h-8 items-end space-x-1"
