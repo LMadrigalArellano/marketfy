@@ -12,7 +12,7 @@ interface Props {
 export async function generateMetadata({params}: Props): Promise<Metadata> {
 
   try {
-    const {id, title} = await getSingleProduct(params.id); //TODO: Make this request response available everywhere in the page
+    const {id, title} = await getSingleProduct(params.id);
   
     return {
       title: `#${ id } - ${ title }`,
@@ -30,7 +30,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 
 const ProductPage = async ({ params }: Props) => {
 
-  const product = await getSingleProduct(params.id); //TODO: Make this request response available everywhere in the page
+  const product = await getSingleProduct(params.id);
   
   return (
     <div className='mt-5 mb-20 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3'>
