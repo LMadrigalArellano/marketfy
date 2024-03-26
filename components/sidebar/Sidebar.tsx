@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "@/store"
 import { toggleMenu } from "@/store/ui/sideMenuSlice"
 import { logout } from "@/store/users/users-store"
 import Link from "next/link"
-import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
+import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPersonOutline, IoTicketOutline } from "react-icons/io5"
 
 export const Sidebar = () => {
 
@@ -37,7 +37,7 @@ export const Sidebar = () => {
                     onClick={() => dispatch( toggleMenu() )}
                   />
                   <Link
-                    href="/"
+                    href={`/user/${ loggedUser.id }`}
                     onClick={() => dispatch( toggleMenu() )}
                     className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
                   >
@@ -64,8 +64,8 @@ export const Sidebar = () => {
                   </Link>
 
                   <Link
-                    href="/auth/login"
-                    onClick={() => {dispatch( logout() ); dispatch( toggleMenu() )}}
+                    href="/"
+                    onClick={() => {dispatch( toggleMenu() ); dispatch( logout() ); }}
                     className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
                   >
                   <IoLogOutOutline size={30} />

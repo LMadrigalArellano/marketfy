@@ -7,6 +7,7 @@ import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { toggleMenu } from "@/store/ui/sideMenuSlice";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { User } from "@/interfaces";
+import { usePathname } from 'next/navigation';
 
 const navItems = [
 	{ path: '/catalog', text: 'Catalog' },
@@ -19,6 +20,7 @@ export const Navbar = () => {
 	const dispatch = useAppDispatch();
 	const loggedUser = useAppSelector(state => state.users.loggedUser);
 	const cartItemCount:number = useAppSelector(state => state.cart.totalItems);
+	const pathName = usePathname();
 
 	return (
 		<nav className='flex px-5 justify-between items-center w-full'>
@@ -44,7 +46,7 @@ export const Navbar = () => {
 				{
 					(loggedUser) && (
 						<>
-							<Link href={`user/${ loggedUser.id }`}>
+							<Link href={`/user/${ loggedUser.id }`}>
 								<div className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
 									{loggedUser.firstName}
 								</div>

@@ -22,8 +22,12 @@ const usersSlice = createSlice({
   reducers: {
 
     setInitialUsers(state, action: PayloadAction<UsersState>){
-      state.users = action.payload.users;
-      state.loggedUser = action.payload.loggedUser;
+      if(action.payload.users.length > 0){
+        state.users = action.payload.users;
+      }
+      if(action.payload.loggedUser !== undefined){
+        state.loggedUser = action.payload.loggedUser;
+      }
     },
 
     addNewUser(state, action: PayloadAction<User>){

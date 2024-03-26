@@ -2,13 +2,35 @@ import { CartProduct, CartState } from '@/interfaces';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState: CartState = {
-  cart: [],
-  totalItems: 0,
-  summaryInformation: {
-    productsAmount: 0,
-    subTotal: 0,
-    taxes: 0,
-    total: 0,
+  "cart": [
+    {
+      "id": 1,
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "quantity": 1,
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Mens Casual Premium Slim Fit T-Shirts ",
+      "price": 22.3,
+      "quantity": 1,
+      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Mens Cotton Jacket",
+      "price": 55.99,
+      "quantity": 1,
+      "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+    }
+  ],
+  "totalItems": 3,
+  "summaryInformation": {
+    "productsAmount": 3,
+    "subTotal": 188.24,
+    "taxes": 30.1184,
+    "total": 218.35840000000002
   }
 }
 
@@ -18,7 +40,9 @@ const cartSlice = createSlice({
   reducers: {
 
     setInitialProductsInCart(state, action: PayloadAction<CartState>){
-      state.cart = action.payload.cart;
+      if(action.payload.cart.length > 0){
+        state.cart = action.payload.cart;
+      }
     },
 
     calculateTotalItems(state){
