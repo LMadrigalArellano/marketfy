@@ -8,7 +8,7 @@ const initialState: UsersState = {
       firstName: 'Leonardo',
       lastName: 'Madrigal',
       bio: 'Software Developer',
-      email: 'LMadrigalArellano@Deloitte.com',
+      email: 'leo@leo.com',
       password: '123',
       areasOfInterest: 'sport,software,technology',
       role: 'admin',

@@ -36,18 +36,23 @@ const VerifyOrder = () => {
         summaryInformation,
       }
     }
-    dispatch(addNewOrder(newOrder));
+    dispatch( addNewOrder(newOrder) );
     dispatch( clearCart() );
     dispatch( calculateTotalItems() );
 
   }
 
   return (
-    <div className='bg-white rounded-xl shadow-xl p-7 h-[290px]'>
+    <div className='bg-white rounded-xl shadow-xl p-7 h-[300px]'>
 
       <h2 className='text-2xl mb-2'>
         Verify order
       </h2>
+
+      <div className='grid grid-cols-2'>
+        <span>User: </span>
+        <span className='text-right'>{loggedUser!.firstName} { loggedUser!.lastName}</span>
+      </div>
 
       <div className='grid grid-cols-2'>
         <span>Products amount: </span>

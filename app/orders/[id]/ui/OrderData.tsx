@@ -58,11 +58,16 @@ const OrderData = ({ id }: Props) => {
         }
       </div>
 
-      <div className='bg-white rounded-xl shadow-xl p-7 h-[240px]'>
+      <div className='bg-white rounded-xl shadow-xl p-7 h-[300px]'>
 
         <h2 className='text-2xl mb-2'>
           Order summary
         </h2>
+
+        <div className='flex justify-between'>
+          <span>Created by: </span>
+          <span>{ currentOrder.userId }</span>
+        </div>
 
         <div className='grid grid-cols-2'>
           <span>Date: </span>

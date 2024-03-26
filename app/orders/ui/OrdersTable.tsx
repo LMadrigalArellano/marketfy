@@ -8,7 +8,9 @@ import { useEffect, useState } from "react";
 const OrdersTable = () => {
   const [loaded, setLoaded] = useState(false);
 
-  const orders: SingleOrder[] = useAppSelector(state => state.orders.orders);
+  const loggedUserId = useAppSelector(state => state.users.loggedUser!.id);
+
+  const orders: SingleOrder[] = useAppSelector(state => state.orders.orders).filter((order) => order.userId === loggedUserId);
 
   useEffect(() => {
     setLoaded(true);
