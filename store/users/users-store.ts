@@ -13,7 +13,7 @@ const initialState: UsersState = {
       areasOfInterest: 'sport,software,technology',
       role: 'admin',
     }
-  ]
+  ],
 }
 
 const usersSlice = createSlice({
@@ -23,6 +23,7 @@ const usersSlice = createSlice({
 
     setInitialUsers(state, action: PayloadAction<UsersState>){
       state.users = action.payload.users;
+      state.loggedUser = action.payload.loggedUser;
     },
 
     addNewUser(state, action: PayloadAction<User>){
@@ -45,14 +46,12 @@ const usersSlice = createSlice({
       state.users[indexOfUser] = updatedUser;
     },
 
-    validateLogin(state, action: PayloadAction<string, string>){
-      const userInDb = state.users.find((user) => user.email === action.payload[0]);
+    setLoggedUser(state, action: PayloadAction<User>){
+      state.loggedUser = action.payload;
+    },
 
-      if(userInDb !== undefined){
-        if(userInDb.password === action.payload[1]){
-          
-        }
-      }
+    logout(state){
+      state.loggedUser = undefined;
     }
   }
 });
@@ -62,6 +61,8 @@ export const {
   addNewUser, 
   removeUser, 
   updateUser,
+  setLoggedUser,
+  logout
 } = usersSlice.actions
 
 export default usersSlice.reducer

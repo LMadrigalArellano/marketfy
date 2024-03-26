@@ -6,6 +6,7 @@ import { GoHome } from "react-icons/go";
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { toggleMenu } from "@/store/ui/sideMenuSlice";
 import { useAppDispatch, useAppSelector } from "@/store";
+import { User } from "@/interfaces";
 
 const navItems = [
 	{ path: '/catalog', text: 'Catalog' },
@@ -16,7 +17,7 @@ const navItems = [
 export const Navbar = () => {
 
 	const dispatch = useAppDispatch();
-
+	const loggedUser = useAppSelector(state => state.users.loggedUser);
 	const cartItemCount:number = useAppSelector(state => state.cart.totalItems);
 
 	return (
@@ -25,28 +26,42 @@ export const Navbar = () => {
 				<GoHome className='mr-2'/>
 				<span>Marketfy</span>
 			</Link>
-
-			<div className="hidden sm:block">
-				{
-					navItems.map(( item => {
-						return  (
-							<ActiveLink key={item.path} path={item.path} text={item.text}/>
-						);
-					}))
-				}
-			</div>
-			<div className="flex items-center">
-				<Link href='/cart' className="mx-2 hover:bg-gray-100">
-					<div className="relative ">
-						{cartItemCount > 0 && (
-							<span className="absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white ">
-								{ cartItemCount }
-							</span>
-						)}
-						<IoCartOutline className="w-5 h-5"/>
+			{
+				(loggedUser) && (
+					<div className="hidden sm:block">
+						{
+							navItems.map(( item => {
+								return  (
+									<ActiveLink key={item.path} path={item.path} text={item.text}/>
+								);
+							}))
+						}
 					</div>
-				</Link>
-
+				)
+			}
+			
+			<div className="flex items-center">
+				{
+					(loggedUser) && (
+						<>
+							<Link href='/'>
+								<div className="m-2 p-2 rounded-md transition-all hover:bg-gray-100">
+									{loggedUser.firstName}
+								</div>
+							</Link>
+							<Link href='/cart' className="mx-2 hover:bg-gray-100">
+								<div className="relative ">
+									{cartItemCount > 0 && (
+										<span className="absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white ">
+											{ cartItemCount }
+										</span>
+									)}
+									<IoCartOutline className="w-5 h-5"/>
+								</div>
+							</Link>
+						</>
+					)
+				}
 				<button 
 					className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
 					onClick={() => dispatch( toggleMenu() )}

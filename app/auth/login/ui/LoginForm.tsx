@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Link from "next/link";
-import { useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
 import { User } from '@/interfaces';
-import { LoginButton } from './LoginButton';
 import { PrimaryButton } from '@/components';
+import { setLoggedUser } from '@/store/users/users-store';
 
 export const LoginForm = () => {
+
+  const dispatch = useAppDispatch();
   const [loaded, setLoaded] = useState(false);
   const [inputLogin, setInputLogin] = useState({email: '', password: ''});
 
@@ -19,6 +21,7 @@ export const LoginForm = () => {
     if(!userInDb || userInDb.password !== password){
       alert('Invalid credentials');
     } else {
+      dispatch(setLoggedUser(userInDb));
       window.location.replace('/');
     }
     

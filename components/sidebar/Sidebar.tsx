@@ -2,12 +2,14 @@
 
 import { useAppDispatch, useAppSelector } from "@/store"
 import { toggleMenu } from "@/store/ui/sideMenuSlice"
+import { logout } from "@/store/users/users-store"
 import Link from "next/link"
 import { IoCloseOutline, IoHeartOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from "react-icons/io5"
 
 export const Sidebar = () => {
 
   const isMenuOpen = useAppSelector(state => state.sideMenu.isOpen);
+  const loggedUser = useAppSelector(state => state.users.loggedUser);
   const dispatch = useAppDispatch();
 
   return (
@@ -26,78 +28,64 @@ export const Sidebar = () => {
             <nav 
               className="fixed p-5 right-0 top-0 w-[500px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-300"
             >
+              {
+              (loggedUser !== undefined) && (
+                <>
+                  <IoCloseOutline 
+                    size={50}
+                    className="absolute top-5 right-5 cursor-pointer"
+                    onClick={() => dispatch( toggleMenu() )}
+                  />
+                  <Link
+                    href="/"
+                    onClick={() => dispatch( toggleMenu() )}
+                    className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+                  >
+                    <IoPersonOutline size={30} />
+                    <span className="ml-3 text-xl">Profile</span>
+                  </Link>
 
-              <IoCloseOutline 
-                size={50}
-                className="absolute top-5 right-5 cursor-pointer"
-                onClick={() => dispatch( toggleMenu() )}
-              />
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoPersonOutline size={30} />
-                <span className="ml-3 text-xl">Profile</span>
-              </Link>
+                  <Link
+                    href="/orders"
+                    onClick={() => dispatch( toggleMenu() )}
+                    className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+                  >
+                    <IoTicketOutline size={30} />
+                    <span className="ml-3 text-xl">My orders</span>
+                  </Link>
 
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoTicketOutline size={30} />
-                <span className="ml-3 text-xl">My orders</span>
-              </Link>
+                  <Link
+                    href="/wishlist"
+                    onClick={() => dispatch( toggleMenu() )}
+                    className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+                  >
+                    <IoHeartOutline size={30} />
+                    <span className="ml-3 text-xl">Wishlist</span>
+                  </Link>
 
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoHeartOutline size={30} />
-                <span className="ml-3 text-xl">Wishlist</span>
-              </Link>
+                  <Link
+                    href="/auth/login"
+                    onClick={() => {dispatch( logout() ); dispatch( toggleMenu() )}}
+                    className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+                  >
+                  <IoLogOutOutline size={30} />
+                  <span className="ml-3 text-xl">Log out</span>
+                </Link>
+                </>
+                )
+              } 
 
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoLogInOutline size={30} />
-                <span className="ml-3 text-xl">Log in</span>
-              </Link>
-
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoLogOutOutline size={30} />
-                <span className="ml-3 text-xl">Log out</span>
-              </Link>
-
+              {(loggedUser === undefined) && (
+                  <Link
+                    href="/auth/login"
+                    onClick={() => dispatch( toggleMenu() )}
+                    className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+                  >
+                  <IoLogInOutline size={30} />
+                  <span className="ml-3 text-xl">Log in</span>
+                </Link>
+              )}
               <div className="w-full h-px bg-gray-200 my-10"/>
-
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoShirtOutline size={30} />
-                <span className="ml-3 text-xl">Products</span>
-              </Link>
-
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoTicketOutline size={30} />
-                <span className="ml-3 text-xl">Orders</span>
-              </Link>
-
-              <Link
-                href="/"
-                className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
-              >
-                <IoPeopleOutline size={30} />
-                <span className="ml-3 text-xl">Users</span>
-              </Link>
-
             </nav>
           </>
         )

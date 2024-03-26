@@ -7,7 +7,7 @@ interface Props {
 
 export const SearchBar = ({setSearchText}: Props) => {
   return (
-    <div className="max-w-md mx-auto">   
+    <div className="max-w-md mx-auto my-5">   
       <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
               <IoSearchOutline size={20}/>
