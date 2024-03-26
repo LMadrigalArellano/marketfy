@@ -1,9 +1,12 @@
 import React from 'react';
 import { UserProfile } from './ui/UserProfile';
+import { IsAuth } from '@/components';
 
 const UserPage = async () => {
   return (
-    <UserProfile />
+    <IsAuth>
+      <UserProfile />
+    </IsAuth>
   )
 }
 

@@ -3,11 +3,11 @@ import Link from 'next/link';
 import React from 'react'
 import ProductsToPay from './ui/ProductsToPay';
 import VerifyOrder from './ui/VerifyOrder';
-import { Title } from '@/components';
+import { IsAuth, Title } from '@/components';
 
 const VerifyOrderPage = () => {  
   return (
-    <>
+    <IsAuth>
       <Title text='Verify Order'/>
       <div className='flex justify-center items-center mb-72 px-10 sm:px0'>
       <div className='flex flex-col w-[1000px]'>
@@ -17,7 +17,7 @@ const VerifyOrderPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </IsAuth>
   )
 }
 

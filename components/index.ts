@@ -12,3 +12,4 @@ export { ToggleFromWishListButton } from './product/toggle-from-wishlist-button/
 export { AddToCartButton } from './product/add-to-cart/AddToCartButton';
 export { SearchBar } from './searchbar/SearchBar';
 export { PrimaryButton } from './primary-button/PrimaryButton';
+export { IsAuth } from './isAuth/IsAuth';

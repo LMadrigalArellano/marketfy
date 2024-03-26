@@ -1,6 +1,6 @@
 'use client';
 
-import { CartProduct, CartSummary, SingleOrder } from "@/interfaces";
+import { CartProduct, CartSummary, SingleOrder, User } from "@/interfaces";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { clearCart, calculateTotalItems } from "@/store/cart/cart-store";
 import { addNewOrder } from "@/store/orders/orders.store";
@@ -10,11 +10,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 const VerifyOrder = () => {
-  const dispatch = useAppDispatch();
-
   const [loaded, setLoaded] = useState(false);
+  
+  const dispatch = useAppDispatch();
   const summaryInformation: CartSummary = useAppSelector(state => state.cart.summaryInformation);
   const productsInCart: CartProduct[] = useAppSelector(state => state.cart.cart);
+  const loggedUser = useAppSelector(state => state.users.loggedUser);
+
   const { productsAmount, subTotal, taxes, total } = summaryInformation;
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const VerifyOrder = () => {
   const handleSubmitOrder = () => {
     const newOrder: SingleOrder = {
       id: uuidv4(),
+      userId: loggedUser!.id,
       date: (new Date()).toString(),
       orderSummary: {
         cart: productsInCart,
